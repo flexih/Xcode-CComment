@@ -184,7 +184,7 @@ static CComment *sharedPlugin;
 - (NSInteger)isCommented:(NSString **)pvalue
 {
     NSString *value = *pvalue;
-    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"/\\*.*\\*/" options:0 error:nil];
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"/\\*[\\s\\S]*\\*/" options:0 error:nil];
     NSArray *results = [expression matchesInString:value options:0 range:NSMakeRange(0, value.length)];
     
     if (results.count > 0) {
