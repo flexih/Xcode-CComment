@@ -3,7 +3,8 @@
 //  CComment
 //
 //  Created by flexih on 14-1-17.
-//  Copyright (c) 2014年 flexih. All rights reserved.
+//  Copyright (c) 2014 flexih. All rights reserved.
+//  Xcode code from https://github.com/qfish/XAlign/blob/master/xcode/SharedXcode.h
 //
 
 #import "Xcode.h"

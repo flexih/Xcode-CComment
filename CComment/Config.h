@@ -3,7 +3,7 @@
 //  CComment
 //
 //  Created by flexih on 14-1-19.
-//  Copyright (c) 2014年 flexih. All rights reserved.
+//  Copyright (c) 2014 flexih. All rights reserved.
 //
 
 #ifndef _CONfIG_H_
