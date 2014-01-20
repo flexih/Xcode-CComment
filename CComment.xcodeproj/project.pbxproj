@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		71280EFD18881CF900A1383F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71280EFC18881CF900A1383F /* AppKit.framework */; };
+		71280EFF18881CF900A1383F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71280EFE18881CF900A1383F /* Foundation.framework */; };
+		71280F0518881CF900A1383F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71280F0318881CF900A1383F /* InfoPlist.strings */; };
+		71280F0818881CF900A1383F /* CComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 71280F0718881CF900A1383F /* CComment.m */; };
+		71B13E661888D6F5001D3B0B /* Xcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B13E651888D6F5001D3B0B /* Xcode.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		71280EF918881CF900A1383F /* CComment.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CComment.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		71280EFC18881CF900A1383F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		71280EFE18881CF900A1383F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		71280F0218881CF900A1383F /* CComment-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CComment-Info.plist"; sourceTree = "<group>"; };
+		71280F0418881CF900A1383F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		71280F0618881CF900A1383F /* CComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CComment.h; sourceTree = "<group>"; };
+		71280F0718881CF900A1383F /* CComment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CComment.m; sourceTree = "<group>"; };
+		71280F0918881CF900A1383F /* CComment-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CComment-Prefix.pch"; sourceTree = "<group>"; };
+		715945BD188C0664000F4E1A /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		71B13E641888D6F5001D3B0B /* Xcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode.h; sourceTree = "<group>"; };
+		71B13E651888D6F5001D3B0B /* Xcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xcode.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		71280EF618881CF900A1383F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71280EFD18881CF900A1383F /* AppKit.framework in Frameworks */,
+				71280EFF18881CF900A1383F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		71280EF018881CF900A1383F = {
+			isa = PBXGroup;
+			children = (
+				71280F0018881CF900A1383F /* CComment */,
+				71280EFB18881CF900A1383F /* Frameworks */,
+				71280EFA18881CF900A1383F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		71280EFA18881CF900A1383F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71280EF918881CF900A1383F /* CComment.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		71280EFB18881CF900A1383F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				71280EFC18881CF900A1383F /* AppKit.framework */,
+				71280EFE18881CF900A1383F /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		71280F0018881CF900A1383F /* CComment */ = {
+			isa = PBXGroup;
+			children = (
+				71B13E641888D6F5001D3B0B /* Xcode.h */,
+				71B13E651888D6F5001D3B0B /* Xcode.m */,
+				715945BD188C0664000F4E1A /* Config.h */,
+				71280F0618881CF900A1383F /* CComment.h */,
+				71280F0718881CF900A1383F /* CComment.m */,
+				71280F0118881CF900A1383F /* Supporting Files */,
+			);
+			path = CComment;
+			sourceTree = "<group>";
+		};
+		71280F0118881CF900A1383F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				71280F0218881CF900A1383F /* CComment-Info.plist */,
+				71280F0318881CF900A1383F /* InfoPlist.strings */,
+				71280F0918881CF900A1383F /* CComment-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		71280EF818881CF900A1383F /* CComment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71280F0C18881CF900A1383F /* Build configuration list for PBXNativeTarget "CComment" */;
+			buildPhases = (
+				71280EF518881CF900A1383F /* Sources */,
+				71280EF618881CF900A1383F /* Frameworks */,
+				71280EF718881CF900A1383F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CComment;
+			productName = CComment;
+			productReference = 71280EF918881CF900A1383F /* CComment.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		71280EF118881CF900A1383F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = flexih;
+			};
+			buildConfigurationList = 71280EF418881CF900A1383F /* Build configuration list for PBXProject "CComment" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 71280EF018881CF900A1383F;
+			productRefGroup = 71280EFA18881CF900A1383F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				71280EF818881CF900A1383F /* CComment */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		71280EF718881CF900A1383F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71280F0518881CF900A1383F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		71280EF518881CF900A1383F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71280F0818881CF900A1383F /* CComment.m in Sources */,
+				71B13E661888D6F5001D3B0B /* Xcode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		71280F0318881CF900A1383F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71280F0418881CF900A1383F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		71280F0A18881CF900A1383F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		71280F0B18881CF900A1383F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		71280F0D18881CF900A1383F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CComment/CComment-Prefix.pch";
+				INFOPLIST_FILE = "CComment/CComment-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		71280F0E18881CF900A1383F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CComment/CComment-Prefix.pch";
+				INFOPLIST_FILE = "CComment/CComment-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		71280EF418881CF900A1383F /* Build configuration list for PBXProject "CComment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71280F0A18881CF900A1383F /* Debug */,
+				71280F0B18881CF900A1383F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71280F0C18881CF900A1383F /* Build configuration list for PBXNativeTarget "CComment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71280F0D18881CF900A1383F /* Debug */,
+				71280F0E18881CF900A1383F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 71280EF118881CF900A1383F /* Project object */;
+}
