@@ -104,15 +104,23 @@ static CComment *sharedPlugin;
     NSCharacterSet *whitespace = [NSCharacterSet whitespaceCharacterSet];
     
     if (preRange.length > 0) {
-        range.location = preRange.location + preRange.length;
+        NSUInteger location = preRange.location + preRange.length;
         
-        while ([whitespace characterIsMember:[source characterAtIndex:range.location++]]);
+        while (location < length && [whitespace characterIsMember:[source characterAtIndex:location]]) {
+            location++;
+        }
+        
+        range.location = location;
     }
     
     if (sufRange.length > 0) {
-        while ([whitespace characterIsMember:[source characterAtIndex:sufRange.location--]]);
+        NSUInteger location = sufRange.location;
         
-        range.length = sufRange.location - range.location;
+        while (location > 0 && [whitespace characterIsMember:[source characterAtIndex:location]]) {
+            location--;
+        }
+        
+        range.length = location - range.location;
         
     } else {
         sufRange.location = length;
@@ -121,7 +129,7 @@ static CComment *sharedPlugin;
     
     *prange = range;
     
-    NSString *value = [source substringWithRange:*prange];
+    NSString *value = [source substringWithRange:range];
     NSInteger result = [self isCommented:&value];
     
     if (result > 0) {
@@ -142,12 +150,20 @@ static CComment *sharedPlugin;
     
     NSUInteger i = 0, j = range.length - 1;
     
-    while ([whitespaceNewLine characterIsMember:[value characterAtIndex:j--]]);
+    while (j > 0 && [whitespaceNewLine characterIsMember:[value characterAtIndex:j]]) {
+        j--;
+    }
     
-    while ([whitespaceNewLine characterIsMember:[value characterAtIndex:i++]]);
+    while (i < j + 1 && [whitespaceNewLine characterIsMember:[value characterAtIndex:i]]) {
+        i++;
+    }
     
     range.location += i;
     range.length = j - i + 1;
+
+    if (range.length == 0) {
+        return nil;
+    }
     
     if (!NSEqualRanges(range, *prange)) {
         value = [source substringWithRange:range];
@@ -170,7 +186,7 @@ static CComment *sharedPlugin;
  1 comment found
  0 comment found more than once, do not handle
  -2 half comment found, like / * or * /(no blank), do no handle
- -1 on comment found
+ -1 no comment found
  */
 
 - (NSInteger)isCommented:(NSString **)pvalue
