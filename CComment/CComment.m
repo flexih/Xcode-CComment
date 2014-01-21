@@ -146,13 +146,9 @@ static CComment *sharedPlugin;
     
     NSUInteger i = 0, j = range.length - 1;
     
-    while ([whitespaceNewLine characterIsMember:[value characterAtIndex:j]]) {
-        j--;
-    }
+    while ([whitespaceNewLine characterIsMember:[value characterAtIndex:j--]]);
     
-    while ([whitespaceNewLine characterIsMember:[value characterAtIndex:i]]) {
-        i++;
-    }
+    while ([whitespaceNewLine characterIsMember:[value characterAtIndex:i++]]);
     
     range.location += i;
     range.length = j - i + 1;
