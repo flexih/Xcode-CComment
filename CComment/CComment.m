@@ -106,15 +106,11 @@ static CComment *sharedPlugin;
     if (preRange.length > 0) {
         range.location = preRange.location + preRange.length;
         
-        while ([whitespace characterIsMember:[source characterAtIndex:range.location]]) {
-            range.location++;
-        }
+        while ([whitespace characterIsMember:[source characterAtIndex:range.location++]]);
     }
     
     if (sufRange.length > 0) {
-        while ([whitespace characterIsMember:[source characterAtIndex:sufRange.location]]) {
-            sufRange.location--;
-        }
+        while ([whitespace characterIsMember:[source characterAtIndex:sufRange.location--]]);
         
         range.length = sufRange.location - range.location;
         
