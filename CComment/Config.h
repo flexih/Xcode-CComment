@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 flexih. All rights reserved.
 //
 
-#ifndef _CONfIG_H_
+#ifndef _CONFIG_H_
 #define _CONFIG_H_
 
 #define MENU_ITEM_TITLE @"Comment"
