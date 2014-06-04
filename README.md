@@ -12,6 +12,7 @@ CComment
 <br/>
 ####Usage:
 .build, or copy to ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins，and restart Xcode
+.Menu->Edit->Comment, CMD+CTRL+/ for shortcut, compile to customise
 <br/>
 PS:build error? Copy CComment.xcplugin in Plugin to Xcode Plug-ins dir first to promote permission
 
