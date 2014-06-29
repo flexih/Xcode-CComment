@@ -224,7 +224,7 @@ static CComment *sharedPlugin;
                 return YES;
             }
             
-            if (i < value.length - 1 && [value characterAtIndex:i + 1] == '/') {
+            if (i + 1 < value.length && [value characterAtIndex:i + 1] == '/') {
                 return YES;
             }
         }
