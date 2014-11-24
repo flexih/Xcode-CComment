@@ -12,7 +12,7 @@ How To Use:
 -----------
 - build, or copy to ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins，and restart Xcode
 - Menu->Edit->Comment, CMD+CTRL+/ for shortcut, compile to customise
-PS:build error? Copy CComment.xcplugin in Plugin to Xcode Plug-ins dir first to promote permission
+- Build error? Copy CComment.xcplugin in Plugin to Xcode Plug-ins dir first to promote permission
 
 TODO:
 -----
