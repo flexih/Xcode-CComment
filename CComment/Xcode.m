@@ -107,6 +107,9 @@
     [[document textStorage] beginEditing];
     [[document textStorage] replaceCharactersInRange:range withString:aString withUndoManager:[document undoManager]];
     [[document textStorage] endEditing];
+
+    NSInteger commentRightPartLength = 3; // " */"
+    [[self textView] setSelectedRange:NSMakeRange(range.location + aString.length - commentRightPartLength, 0)];
 }
 
 @end
