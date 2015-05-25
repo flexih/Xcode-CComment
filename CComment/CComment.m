@@ -137,7 +137,7 @@ static CComment *sharedPlugin;
     } else if (result == 0 || result == -2) {
         return nil;
     } else {
-        return [NSString stringWithFormat:@"/* %@ */", value];
+        return [NSString stringWithFormat:@"/*%@*/", value];
     }
 }
 
@@ -177,7 +177,7 @@ static CComment *sharedPlugin;
     } else if (result == 0 || result == -2) {
         return nil;
     } else {
-        return [NSString stringWithFormat:@"/* %@ */", value];
+        return [NSString stringWithFormat:@"/*%@*/", value];
     }
 }
 
