@@ -18,3 +18,11 @@ TODO:
 -----
 - extend detection for /**/, /*,*/
 - customize key shortcut
+
+How To Fix DIY:
+-----------
+- get Xcode(new version) UUID
+  defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID
+- add UUID to DVTPlugInCompatibilityUUIDs in file
+  ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/CComment.xcplugin/Contents/Info.plist
+
