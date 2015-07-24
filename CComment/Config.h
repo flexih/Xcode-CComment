@@ -12,6 +12,6 @@
 #define MENU_ITEM_TITLE @"Comment"
 #define KEY_BINDING_MENU_NAME @"Edit"
 #define SHOURTCUT_INDENTIFIYER @"^@/"
-#define MENU_ITEM_OPTION_TITLE @"Enable Leading/Trailing Spacing"
+#define MENU_ITEM_OPTION_TITLE @"Enable Leading/Trailing Space"
 
 #endif
