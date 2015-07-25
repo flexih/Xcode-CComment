@@ -81,6 +81,8 @@ static CComment *sharedPlugin;
 {
     NSTextView *textView = [Xcode textView];
     NSArray *ranges = [textView selectedRanges];
+
+    if (ranges.count == 0) return;
     
     NSRange range = [[ranges firstObject] rangeValue];
     NSString *commented = [self commentString:textView.textStorage.string range:&range];
