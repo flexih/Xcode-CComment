@@ -15,10 +15,12 @@ static CComment *sharedPlugin;
 @interface CComment ()
 
 @property (nonatomic, strong) NSBundle *bundle;
+@property (nonatomic) NSInteger optionState;
 
 @end
 
 @implementation CComment
+@dynamic optionState;
 
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
@@ -64,6 +66,14 @@ static CComment *sharedPlugin;
         [actionMenuItem setKeyEquivalent:@"/"];
         [actionMenuItem setKeyEquivalentModifierMask:NSControlKeyMask | NSCommandKeyMask];
         [[menuItem submenu] addItem:actionMenuItem];
+
+        NSMenuItem *optionMenuItem = [[NSMenuItem alloc] initWithTitle:MENU_ITEM_OPTION_TITLE action:@selector(doOptionAction:) keyEquivalent:@""];
+        NSMenu *optionMenu = [[NSMenu alloc] initWithTitle:@""];
+
+        [optionMenuItem setState:self.optionState];
+        [optionMenuItem setTarget:self];
+        [optionMenu addItem:optionMenuItem];
+        [actionMenuItem setSubmenu:optionMenu];
     }
 }
 
@@ -71,6 +81,8 @@ static CComment *sharedPlugin;
 {
     NSTextView *textView = [Xcode textView];
     NSArray *ranges = [textView selectedRanges];
+
+    if (ranges.count == 0) return;
     
     NSRange range = [[ranges firstObject] rangeValue];
     NSString *commented = [self commentString:textView.textStorage.string range:&range];
@@ -78,6 +90,12 @@ static CComment *sharedPlugin;
     if (commented != nil) {
         [Xcode replaceCharactersInRange:range withString:commented];
     }
+}
+
+- (void)doOptionAction:(NSMenuItem *)optionMenuItem {
+    optionMenuItem.state = !optionMenuItem.state;
+
+    self.optionState = optionMenuItem.state;
 }
 
 - (NSString *)commentString:(NSString *)source range:(NSRange *)prange
@@ -137,11 +155,15 @@ static CComment *sharedPlugin;
     } else if (result == 0 || result == -2) {
         return nil;
     } else {
-        return [NSString stringWithFormat:@"/*%@*/", value];
+        if ([self isOptionEnabled]) {
+            return [NSString stringWithFormat:@"/* %@ */", value];
+        } else {
+            return [NSString stringWithFormat:@"/*%@*/", value];
+        }
     }
 }
 
-- (NSString *)multiLine:(NSString *)source range:(NSRange *)prange
+ - (NSString *)multiLine:(NSString *)source range:(NSRange *)prange 
 {
     NSRange range = *prange;
     NSString *value = [source substringWithRange:range];
@@ -177,7 +199,11 @@ static CComment *sharedPlugin;
     } else if (result == 0 || result == -2) {
         return nil;
     } else {
-        return [NSString stringWithFormat:@"/*%@*/", value];
+        if ([self isOptionEnabled]) {
+            return [NSString stringWithFormat:@"/* %@ */", value];
+        } else {
+            return [NSString stringWithFormat:@"/*%@*/", value];
+        }
     }
 }
 
@@ -199,8 +225,24 @@ static CComment *sharedPlugin;
         if (results.count == 1) {
             NSRange r = ((NSTextCheckingResult *)results[0]).range;
             value = [value mutableCopy];
-            [(NSMutableString *)value deleteCharactersInRange:NSMakeRange(r.location + r.length - 2, 2)];
-            [(NSMutableString *)value deleteCharactersInRange:NSMakeRange(r.location, 2)];
+            
+            NSUInteger leadingLength = 2; // "/*"
+            NSUInteger trailingLength = 2; // "*/"
+            
+            BOOL delspacing = self.optionState;
+            
+            if (delspacing) {
+                if ([value characterAtIndex:r.location + leadingLength] == ' ') {
+                    leadingLength++;
+                }
+                
+                if ([value characterAtIndex:NSMaxRange(r) - trailingLength - 1] == ' ') {
+                    trailingLength++;
+                }
+            }
+            
+            [(NSMutableString *)value deleteCharactersInRange:NSMakeRange(r.location + r.length - trailingLength, trailingLength)];
+            [(NSMutableString *)value deleteCharactersInRange:NSMakeRange(r.location, leadingLength)];
             *pvalue = [value copy];
             return 1;
         } else {
@@ -231,6 +273,26 @@ static CComment *sharedPlugin;
     }
     
     return NO;
+}
+
+- (NSInteger)optionState {
+    NSInteger state = NSOffState;
+    NSNumber *stateValue = [[NSUserDefaults standardUserDefaults] valueForKey:@"xc_spacing"];
+
+    if ([stateValue isKindOfClass:[NSNumber class]]) {
+        state = [stateValue integerValue];
+    }
+
+    return state;
+}
+
+- (void)setOptionState:(NSInteger)optionState {
+    [[NSUserDefaults standardUserDefaults] setObject:@(optionState) forKey:@"xc_spacing"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)isOptionEnabled {
+    return self.optionState == NSOnState;
 }
 
 @end
