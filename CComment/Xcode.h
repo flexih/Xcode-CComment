@@ -12,7 +12,7 @@
 
 + (id)currentEditor;
 + (NSTextView *)textView;
-+ (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)aString;
++ (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)aString andOptionEnabled:(BOOL)optionEnabled;
 //+ (void)setupKeyBinding;
 
 @end
