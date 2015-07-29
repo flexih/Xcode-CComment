@@ -88,7 +88,7 @@ static CComment *sharedPlugin;
     NSString *commented = [self commentString:textView.textStorage.string range:&range];
     
     if (commented != nil) {
-        [Xcode replaceCharactersInRange:range withString:commented];
+        [Xcode replaceCharactersInRange:range withString:commented andOptionEnabled:[self isOptionEnabled]];
     }
 }
 

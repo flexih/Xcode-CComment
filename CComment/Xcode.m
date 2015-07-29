@@ -99,7 +99,7 @@
     return nil;
 }
 
-+ (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)aString
++ (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)aString andOptionEnabled:(BOOL)optionEnabled
 {
     IDESourceCodeDocument * document = [self sourceCodeDocument];
     if ( !document )
@@ -107,6 +107,8 @@
     [[document textStorage] beginEditing];
     [[document textStorage] replaceCharactersInRange:range withString:aString withUndoManager:[document undoManager]];
     [[document textStorage] endEditing];
+
+    [[self textView] setSelectedRange:NSMakeRange(range.location + aString.length - (optionEnabled ? 3 : 2), 0)];
 }
 
 @end
