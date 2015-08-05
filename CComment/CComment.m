@@ -10,6 +10,13 @@
 #import "Xcode.h"
 #import "Config.h"
 
+typedef NS_ENUM(int, CommentState) {
+    CommentHalf = -2, //half comment found, like / * or * /(no blank), do no handle
+    CommentNone,      //no comment found
+    CommentMore,      //comment found more than once, do not handle
+    CommentOne,       //comment found
+};
+
 static CComment *sharedPlugin;
 
 @interface CComment ()
@@ -83,12 +90,21 @@ static CComment *sharedPlugin;
     NSArray *ranges = [textView selectedRanges];
 
     if (ranges.count == 0) return;
-    
+
+    bool singleLine;
+    CommentState cs;
     NSRange range = [[ranges firstObject] rangeValue];
-    NSString *commented = [self commentString:textView.textStorage.string range:&range];
+    NSString *commented = [self commentString:textView.textStorage.string
+                                        range:&range
+                                 commentState:&cs
+                                   singleLine:&singleLine];
     
     if (commented != nil) {
         [Xcode replaceCharactersInRange:range withString:commented];
+
+        if (singleLine && cs == CommentNone) {
+            [Xcode moveCursor2Location:range.location + 2 + [self isOptionEnabled]];
+        }
     }
 }
 
@@ -98,16 +114,27 @@ static CComment *sharedPlugin;
     self.optionState = optionMenuItem.state;
 }
 
-- (NSString *)commentString:(NSString *)source range:(NSRange *)prange
+- (NSString *)commentString:(NSString *)source
+                      range:(NSRange *)prange
+               commentState:(CommentState *)commentState
+                 singleLine:(bool *)singleLine
 {
-    if (prange->length == 0) {
-        return [self singleLine:source range:prange];
+    bool single = prange->length == 0;
+
+    if (singleLine) {
+        *singleLine = single;
+    }
+
+    if (single) {
+        return [self singleLine:source range:prange commentState:commentState];
     } else {
-        return [self multiLine:source range:prange];
+        return [self multiLine:source range:prange commentState:commentState];
     }
 }
 
-- (NSString *)singleLine:(NSString *)source range:(NSRange *)prange
+- (NSString *)singleLine:(NSString *)source
+                   range:(NSRange *)prange
+            commentState:(CommentState *)commentState
 {
     NSRange range = *prange;
     NSUInteger length = source.length;
@@ -148,11 +175,15 @@ static CComment *sharedPlugin;
     *prange = range;
     
     NSString *value = [source substringWithRange:range];
-    NSInteger result = [self isCommented:&value];
+    CommentState result = [self isCommented:&value];
+
+    if (commentState) {
+        *commentState = result;
+    }
     
-    if (result > 0) {
+    if (result > CommentMore) {
         return value;
-    } else if (result == 0 || result == -2) {
+    } else if (result == CommentMore || result == CommentHalf) {
         return nil;
     } else {
         if ([self isOptionEnabled]) {
@@ -163,7 +194,9 @@ static CComment *sharedPlugin;
     }
 }
 
- - (NSString *)multiLine:(NSString *)source range:(NSRange *)prange 
+ - (NSString *)multiLine:(NSString *)source
+                   range:(NSRange *)prange
+            commentState:(CommentState *)commentState
 {
     NSRange range = *prange;
     NSString *value = [source substringWithRange:range];
@@ -192,11 +225,15 @@ static CComment *sharedPlugin;
         *prange = range;
     }
     
-    NSInteger result = [self isCommented:&value];
-    
-    if (result > 0) {
+    CommentState result = [self isCommented:&value];
+
+    if (commentState) {
+        *commentState = result;
+    }
+
+    if (result > CommentMore) {
         return value;
-    } else if (result == 0 || result == -2) {
+    } else if (result == CommentMore || result == CommentHalf) {
         return nil;
     } else {
         if ([self isOptionEnabled]) {
@@ -207,15 +244,7 @@ static CComment *sharedPlugin;
     }
 }
 
-/**
- @return 
- 1 comment found
- 0 comment found more than once, do not handle
- -2 half comment found, like / * or * /(no blank), do no handle
- -1 no comment found
- */
-
-- (NSInteger)isCommented:(NSString **)pvalue
+- (CommentState)isCommented:(NSString **)pvalue
 {
     NSString *value = *pvalue;
     NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"/\\*[\\s\\S]*\\*/" options:0 error:nil];
@@ -244,17 +273,18 @@ static CComment *sharedPlugin;
             [(NSMutableString *)value deleteCharactersInRange:NSMakeRange(r.location + r.length - trailingLength, trailingLength)];
             [(NSMutableString *)value deleteCharactersInRange:NSMakeRange(r.location, leadingLength)];
             *pvalue = [value copy];
-            return 1;
+
+            return CommentOne;
         } else {
-            return 0;
+            return CommentMore;
         }
     }
     
     if ([self isHalfCommented:value]) {
-        return -2;
+        return CommentHalf;
     }
     
-    return -1;
+    return CommentNone;
 }
 
 - (BOOL)isHalfCommented:(NSString *)value
