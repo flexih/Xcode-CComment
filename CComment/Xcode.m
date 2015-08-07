@@ -109,4 +109,8 @@
     [[document textStorage] endEditing];
 }
 
++ (void)moveCursor2Location:(NSUInteger)location {
+    [[self textView] setSelectedRange:NSMakeRange(location, 0)];
+}
+
 @end

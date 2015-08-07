@@ -13,6 +13,7 @@
 + (id)currentEditor;
 + (NSTextView *)textView;
 + (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)aString;
++ (void)moveCursor2Location:(NSUInteger)location;
 //+ (void)setupKeyBinding;
 
 @end
