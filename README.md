@@ -8,7 +8,7 @@ Features:
 ---------
 - single line comment(uncomment)
 - selection comment(uncomment)
-- default key shortcut control+command+/
+- default key shortcut ^⌘/(control+command+/)
 
 How To Use:
 -----------
