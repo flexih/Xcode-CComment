@@ -27,7 +27,9 @@ How To Fix DIY:
    `defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID`   
 - add UUID to DVTPlugInCompatibilityUUIDs in file
   ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/CComment.xcplugin/Contents/Info.plist
-- and restart
-## License
+- restart Xcode
+
+License
+-------
 
 Xcode-CComment is available under the MIT license. See the LICENSE file for more info.
