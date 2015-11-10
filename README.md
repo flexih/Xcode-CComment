@@ -1,4 +1,4 @@
-CComment
+Xcode-CComment
 ========
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/flexih/Xcode-CComment/blob/master/LICENSE)
 
