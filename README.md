@@ -16,10 +16,6 @@ How To Use:
 - Menu->Edit->Comment, CMD+CTRL+/ for shortcut, compile to customise
 - Build error? Copy CComment.xcplugin in Plugin to Xcode Plug-ins dir first to promote permission
 
-TODO:
------
-- extend detection for /**/, /*,*/
-- customize key shortcut
 
 How To Fix DIY:
 -----------
@@ -28,6 +24,11 @@ How To Fix DIY:
 - add UUID to DVTPlugInCompatibilityUUIDs in file
   ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/CComment.xcplugin/Contents/Info.plist
 - restart Xcode
+
+Snapshot:
+---------
+![](snapshot/snapshot.gif)
+
 
 License
 -------
