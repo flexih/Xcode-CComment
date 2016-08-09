@@ -4,6 +4,8 @@ Xcode-CComment
 
 Xcode plugin for C Style Comment(uncomment) /**/
 
+Xcode source editor extension for Xcode 8, see [XcodeCComment](https://github.com/flexih/XcodeCComment).
+
 Features:
 ---------
 - single line comment(uncomment)
